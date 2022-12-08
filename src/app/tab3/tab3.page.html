@@ -1,17 +1,62 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title class="font-mona font-bold">
+      Carted Items
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!--  create item cart -->
+  <ion-card *ngFor="let item of cartItems">
+    <ion-card-header>
+      <ion-card-subtitle class="font-mona font-bold flex items-center">
+        {{ item.name }}
+        <ion-badge *ngIf="item.productIsSale" color="primary" class="font-bold font-mona ml-2">
+          On Sale
+        </ion-badge>
+      </ion-card-subtitle>
+      <ion-card-title class="font-mona font-bold text-primary" *ngIf="item.productIsSale">
+        {{ item.price - (item.price*0.2) | currency : 'PHP' : 'symbol' }}
+      </ion-card-title>
+      <ion-card-title class="font-mona font-bold" *ngIf="!item.productIsSale">
+        {{ item.price | currency : 'PHP' : 'symbol' }}
+      </ion-card-title>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <ion-card-content class="flex flex-row">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button color="primary" fill="outline">
+              <ion-icon name="remove-circle-outline"></ion-icon>
+            </ion-button>
+            <ion-button color="primary" fill="outline">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+            <ion-button color="danger" fill="outline">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-img src="./assets/images/{{item.image}}" width="150"></ion-img>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title class="font-mona font-bold">
+        Total: {{ total | currency : 'PHP' : 'symbol'  }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="font-mona font-bold">
+      Total: {{ total | currency : 'PHP' : 'symbol' }}
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-button fill="outline" [routerLink]="['/tabs/tab1']">
+        <ion-label class="font-mona font-bold">BACK</ion-label>
+      </ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="flex flex-col justify-center items-center h-full">
+    <div class="flex">
+      <h2 class="text-3xl text-primary font-bold font-mona">
+        {{product.name}}
+      </h2>
+      <ion-badge *ngIf="product.productIsSale" color="primary" class="font-bold font-mona ml-2 inline-flex items-center">
+        On Sale
+      </ion-badge>
+    </div>
+    <h2 class="text-xl text-gray-900 font-bold italic" *ngIf="!product.productIsSale">
+      {{product.price | currency : 'PHP' : 'symbol'}}
+    </h2>
+    <h2 class="text-xl text-gray-900 font-bold italic" *ngIf="product.productIsSale">
+      {{product.price - (product.price * 0.2) | currency : 'PHP' : 'symbol'}}
+    </h2>
+    <ion-img src="./assets/images/{{product.image}}" class="pt-5 drop-shadow-xl rounded-2xl"></ion-img>
+    <p class="mx-[3rem] text-justify font-mona pt-5">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore doloremque earum eligendi fugit magnam mollitia nemo nesciunt, provident repellat saepe sint sit tenetur. Accusamus dignissimos est facilis nostrum. Eum, harum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur at cum dignissimos dolor enim eos eveniet ex illo laudantium minima nobis nostrum numquam, quod quos sint tempore ut, vel!
+    </p>
+  </div>
+</ion-content>
